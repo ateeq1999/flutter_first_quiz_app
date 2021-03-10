@@ -4,7 +4,10 @@ class Answer extends StatelessWidget {
   final String answerText;
   final Function selectHandler;
 
-  Answer(this.answerText, this.selectHandler);
+  Answer({
+    required this.answerText,
+    required this.selectHandler,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,9 @@ class Answer extends StatelessWidget {
       // alignment: Alignment.center,
       child: ElevatedButton(
         child: Text(answerText),
-        onPressed: selectHandler(),
+        onPressed: () => {
+          selectHandler(),
+        },
       ),
     );
   }

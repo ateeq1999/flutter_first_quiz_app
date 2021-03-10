@@ -7,11 +7,11 @@ class Quiz extends StatelessWidget {
   final int questionIndex;
   final Function answerQuestions;
 
-  Quiz(
-    @required this.questions,
-    @required this.questionIndex,
-    @required this.answerQuestions,
-  );
+  Quiz({
+    required this.questions,
+    required this.questionIndex,
+    required this.answerQuestions,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,11 @@ class Quiz extends StatelessWidget {
         Question(
           (questions[questionIndex]['questionText'] as String),
         ),
-        ...(questions[questionIndex]['answers'] as List<String>).map((answer) {
+        ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
+            .map((answer) {
           return Answer(
-            answer,
-            answerQuestions,
+            answerText: (answer['text'] as String),
+            selectHandler: () => answerQuestions(answer['score']),
           );
         }).toList(),
       ],
